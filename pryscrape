@@ -1,0 +1,72 @@
+# Require the gems
+require 'capybara/poltergeist'
+# Configure Poltergeist to not blow up on websites with js errors aka every website with js
+# See more options at https://github.com/teampoltergeist/poltergeist#customization
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
+end
+# Configure Capybara to use Poltergeist as the driver
+Capybara.default_driver = :poltergeist
+browser = Capybara.current_session
+url = 'http://amazon.com'
+browser.visit url
+browser.save_and_open_page
+isbns = %w[1405232501 082172388X 0764222228
+0590474235 0672320835 0439539439
+0375434461 0752859978 0752860224
+2745945475 0425032337 074459040X
+1860393225 1405232501 082172388X
+0764290762 0590474235 0672320835
+3826672429 0375434461 0752859978
+038079392X 2745945475 0425032337
+0701184361 1860393225 0758238614
+0152049215 3826672429 1921656573
+0747203873 0701184361 0764222228
+0439539439 0152049215 0752860224
+074459040X 0747203873 0764290762
+038079392X 1921656573 0758238614]
+isbns
+firstIsbn = isbns.first
+browser.fill_in 'twotabsearchtextbox', :with => firstIsbn
+browser.save_and_open_page
+browser.fill_in 'twotabsearchtextbox', :with => 'joke'
+browser.save_and_open_page
+browser.click_on 'Go'
+browser.save_and_open_page
+broswer.go_back
+browser.go_back
+browser.fill_in 'twotabsearchtextbox', :with => firstIsbn
+browser.click_on 'Go'
+browser.save_and_open_page
+browser.find '.a-link-normal.s-access-detail-page.a-text-normal'
+bookElement = _
+bookElement.click
+browser.save_and_open_page
+#got to first book's page
+bindingType = browser.find 'a-autoid-1-announce'
+page.find('li', :text => 'ISBN-10')
+browser.find('li, :text => 'ISBN-10')
+browser.find('li', :text => 'ISBN-10')
+isbnTen = _
+isbnTenString = isbnTen.text
+show-doc
+isbnTenIsolate = isbnTenString.match(\d{10})
+isbnTenIsolate = isbnTenString.match('\d{10}')
+#stored isbn-10
+publisherElement = browser.find('li', :text => 'Publisher')
+#find publisher, store as capybara element
+publisherString = publisherElement.text
+publishDate = publisherString.match(/\d\(.*\)/)
+#stored publish date
+publisher = publisherString.match(/:.*\(/)
+#stored publisher
+publisher = publisher.text
+isbnThirteenCapybara = browser.find('li', :text => 'ISBN-13')
+isbnThirteenString = isbnThirteenCapybara.text
+isbnThirteen = isbnThirteenString.match(/\d{3}-\d{10}/)
+title = browser.find('productTitle')
+title = browser.find('#productTitle')
+title = browser.find('#productTitle').text
+#got title
+binding = browser.find('li', :text => 'Paperback')
+hist --save
